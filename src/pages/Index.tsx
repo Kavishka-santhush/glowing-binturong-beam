@@ -1,17 +1,33 @@
-// Update this page (the content is just a fallback if you fail to update the page)
-
-import { MadeWithDyad } from "@/components/made-with-dyad";
+import { useAuth } from '@/context/AuthContext';
+import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Index = () => {
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+  if (!user) return null;
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">
-          Start building your amazing project here!
-        </p>
+    <div className="min-h-screen p-8">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-2xl font-bold">Skill Tracker</h1>
+        <Button onClick={signOut}>Sign Out</Button>
       </div>
-      <MadeWithDyad />
+      
+      <div className="grid gap-4">
+        <h2 className="text-xl font-semibold">Your Skills</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* Skill cards will go here */}
+        </div>
+      </div>
     </div>
   );
 };
