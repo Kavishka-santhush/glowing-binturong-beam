@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import { Login } from "./pages/auth/Login";
 import { Register } from "./pages/auth/Register";
 import { AuthProvider } from "./context/AuthContext";
+import SkillDetail from "./pages/skill/[id]";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +23,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/skill/:id" element={<SkillDetail />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
