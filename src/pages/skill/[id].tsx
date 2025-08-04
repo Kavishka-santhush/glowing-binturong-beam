@@ -1,47 +1,19 @@
-// Add state for dialogs
-const [deleteResourceId, setDeleteResourceId] = useState<string | null>(null);
-const [deleteProjectId, setDeleteProjectId] = useState<string | null>(null);
+// Update main container
+<div className="min-h-screen p-4 md:p-8">
 
-// Update delete buttons:
-<Button 
-  variant="ghost" 
-  size="sm"
-  onClick={() => setDeleteResourceId(resource.id)}
->
-  Delete
-</Button>
+// Update form layouts to stack on mobile
+<div className="grid gap-4 grid-cols-1 md:grid-cols-3">
+  {/* Roadmap item form */}
+</div>
 
-<Button 
-  variant="ghost" 
-  size="sm"
-  onClick={() => setDeleteProjectId(project.id)}
->
-  Delete
-</Button>
+<div className="grid gap-4 grid-cols-1 md:grid-cols-5">
+  {/* Resource form */}
+</div>
 
-// Add dialogs at the bottom of the component return:
-<ConfirmDialog
-  open={!!deleteResourceId}
-  onOpenChange={(open) => !open && setDeleteResourceId(null)}
-  onConfirm={() => {
-    if (deleteResourceId) {
-      deleteResource(deleteResourceId);
-      setDeleteResourceId(null);
-    }
-  }}
-  title="Delete Resource"
-  description="Are you sure you want to delete this resource?"
-/>
+<div className="grid gap-4 grid-cols-1 md:grid-cols-4">
+  {/* Project form */}
+</div>
 
-<ConfirmDialog
-  open={!!deleteProjectId}
-  onOpenChange={(open) => !open && setDeleteProjectId(null)}
-  onConfirm={() => {
-    if (deleteProjectId) {
-      deleteProject(deleteProjectId);
-      setDeleteProjectId(null);
-    }
-  }}
-  title="Delete Project"
-  description="Are you sure you want to delete this project?"
-/>
+// Make tabs scrollable on mobile
+<TabsList className="grid w-full grid-cols-3 overflow-x-auto">
+</TabsList>
