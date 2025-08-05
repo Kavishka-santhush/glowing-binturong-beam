@@ -1,0 +1,19 @@
+name: Deploy Production
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+      - run: supabase link --project-ref ${{ secrets.SUPABASE_PROJECT_ID }}
+      - run: supabase db push
+      - run: supabase functions deploy
+      - uses: actions/setup-node@v4
+      - run: npm install && npm run build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: production-build
+          path: dist
